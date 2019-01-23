@@ -25,10 +25,12 @@ public class UnicomTask {
     private final static Log logger = LogFactory.getLog(UnicomTask.class);
 
     private final String url = "https://act.10010.com/SigninApp/signin";
-    private final String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1NDM5NzQzMTAsInRva2VuIjp7ImxvZ2luVXNlciI6IjEzMDA4ODEyNzE3IiwicmFuZG9tU3RyIjoieWhjM09uY0cxNTQzMzY5NTEwMDE2In0sImlhdCI6MTU0MzM2OTUxMH0.22CDYYVfI5oF9mWEGPdLex1MpciayclJb45sR4FwpPb0eqTh6ptWLQiUFJ-TRCOec-UNnFAFSQwT4y2dvotE6A";
-    private final String signFlag = "eyJkYXRhIjoiMTMyYzJlNGFmOTFiOWU0ZTRmMmMyMDQwOWVkNWU5NDJjOWM1M2RmZmU3OGIwMTUyYTcyMzU5ZTFmNjljMGIwYjAxNTIxNTU4OTg5MWZlOGYxMDZmYWYyOTBlMGZkMWZlOWJlNDdkYzE0ZDFkZDU4MTEzM2ZmMTc0MTcyYzAzNGI0YWVmYTM2YWZjOTNiOTliNmEzZTc3YmIxMTg3N2I0ZiIsInZlcnNpb24iOiIwMCJ9";
+    private final String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1NDYxMzQzMjYsInRva2VuIjp7ImxvZ2luVXNlciI6IjEzMDA4ODEyNzE3IiwicmFuZG9tU3RyIjoieWh6S3pyQzUxNTQ1NTI5NTI2ODY0In0sImlhdCI6MTU0NTUyOTUyNn0.MiqTWox5tbtnn1wmAuTnYG3416WwixggDWGxmJSEE8wbyyXW7XQ4wwu8enYZmnkwKCFjzXECeEpu_xzKUS9idg";
+    private final String signFlag = "eyJkYXRhIjoiMTMyYzJlNGFmOTFiOWU0ZTRmMmMyMDQwOWVkNWU5NDJkYWYwZDVhNWE3MGMxMWRjODM1YTMxNWY0N2YwOGY0NDc1NzA2MDQxM2U1ZjIyZDdlNTZhMDA4NGUzNWRmZWM5N2ZjZGI3YmQ4Njc0ZTliMWJiMDI0Y2RkMTA0NmZjMDkyMWZjNjk0MDQ2NTg3MjcxZTdhZjRkNmE3MGMwYWE2NyIsInZlcnNpb24iOiIwMCJ9";
     //腾讯视频vip
-    private final String productId = "ff80808166cf1a8f01672b89b01b0a8f";
+    // private  String productId = "ff80808166cf1a8f01672b89b01b0a8f";
+    private String productId = "ff808081675b3aa20167df0521f41b80";
+
     //通过token获取登陆信息，产生cookie
     private final String loginUrl = url + "/querySigninActivity.htm?token=" + token + "&signFlag=" + signFlag;
 
@@ -84,7 +86,7 @@ public class UnicomTask {
     public static void main(String[] args) throws ParseException {
         UnicomTask unicomTask = new UnicomTask();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = dateFormat.parse("2018-11-26 14:59:58");
+        Date date = dateFormat.parse("2018-12-25 09:59:58");
         Timer timer = new Timer();
         System.err.println(dateFormat.format(new Date()));
         timer.schedule(new TimerTask() {

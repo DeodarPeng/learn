@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -20,20 +21,20 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
  * @date: 2018年11月14日 上午11:08:32
  */
 @Configuration
-@MapperScan("cc.learn.*.mapper")
+@MapperScan("cc.learn.mapper")
 public class MybatisConfig {
 
     private static final Log logger = LogFactory.getLog(MybatisConfig.class);
 
-    @Bean(name = "sqlSessionFactory")
+    @Bean
     public SqlSessionFactory sessionFactory(DataSource dataSource) {
         try {
             SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
             sqlSessionFactoryBean.setDataSource(dataSource);
-            sqlSessionFactoryBean.setTypeAliasesPackage("cc.learn.*.po");
+            sqlSessionFactoryBean.setTypeAliasesPackage("cc.learn.po");
             // 配置mapper的扫描，找到所有的mapper.xml映射文件
             Resource[] resources = new PathMatchingResourcePatternResolver()
-                    .getResources("classpath:mybatis/mapper/*/*.xml");
+                    .getResources("classpath:mybatis/mapper/*.xml");
             sqlSessionFactoryBean.setMapperLocations(resources);
             // 加载全局的配置文件
             //            sqlSessionFactoryBean
@@ -47,5 +48,4 @@ public class MybatisConfig {
             return null;
         }
     }
-
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="properties/db.properties" />
+	<context id="mysql">
+		<jdbcConnection connectionURL="${jdbc.url}"
+			driverClass="${jdbc.driver}" password="${jdbc.password}"
+			userId="${jdbc.user}" />
+		
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="cc.learn.po" targetProject="learn" />
+		
+		<!-- targetProject:mapper映射文件生成的位置 -->	
+		<sqlMapGenerator targetPackage="mybatis.mapper" targetProject="learn/src/main/resources" />
+		
+		<!-- targetPackage：mapper接口生成的位置 -->	
+		<javaClientGenerator targetPackage="cc.learn.mapper" targetProject="learn" type="XMLMAPPER" />
+			
+		<table catalog="cedarDB" tableName="user"></table>
+	</context>
+</generatorConfiguration>
