@@ -2,6 +2,10 @@ package cc.learn.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+import javax.servlet.annotation.MultipartConfig;
+
 /**
  * @Description:
  * @author: C
@@ -9,32 +13,35 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    /** 
-     * Description  
-     * @see org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer#getRootConfigClasses()   
-     */
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[] { RootConfig.class };
     }
 
-    /** 
-     * Description  
-     * @see org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer#getServletConfigClasses()   
+    /**
+     * 指定配置类
+     * @return
      */
     @Override
     protected Class<?>[] getServletConfigClasses() {
-
         return new Class<?>[] { WebConfig.class };
     }
 
-    /** 
-     * Description  
-     * @see org.springframework.web.servlet.support.AbstractDispatcherServletInitializer#getServletMappings()   
+    /**
+     * 将DispatcherServlet映射到"/"
+     * @return
      */
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };
     }
 
+    /**
+     * 配置 multipart 解析器
+     * @param registration
+     */
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(new MultipartConfigElement("/tmp/spittr/uploads"));
+    }
 }

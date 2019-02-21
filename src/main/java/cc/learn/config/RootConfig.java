@@ -6,7 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.io.IOException;
 
 /**
  * @Description:
@@ -25,4 +30,19 @@ public class RootConfig {
         PropertySourcesPlaceholderConfigurer placeholderConfigurer = new PropertySourcesPlaceholderConfigurer();
         return placeholderConfigurer;
     }
+
+    /**
+     * 配置 multipart 解析器
+     */
+    @Bean
+    public MultipartResolver multipartResolver() throws IOException {
+       /* CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        //默认临时文件路径为 Servlet 容器的临时目录
+        commonsMultipartResolver.setUploadTempDir(new FileSystemResource("/temp/uploads"));
+        return commonsMultipartResolver;*/
+
+    return  null;
+    }
+
+
 }

@@ -22,7 +22,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@PropertySource(value = {"classpath:/properties/db.properties"})
+@PropertySource(value = {"classpath:db.properties"})
 public class DataSourceConfig {
 
     @Value("${jdbc.user}")
