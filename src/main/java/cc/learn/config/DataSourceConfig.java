@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
@@ -34,7 +36,7 @@ public class DataSourceConfig {
     @Value("${jdbc.url}")
     private String url;
 
-  /*  @Bean
+    @Bean
     @Profile("dev")
     public DataSource devDataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -43,10 +45,10 @@ public class DataSourceConfig {
         dataSource.setUser("user");
         dataSource.setPassword("pwd");
         return dataSource;
-    }*/
+    }
 
     @Bean
-//    @Profile("prod")
+    @Profile("prod")
     public DataSource prodDataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setDriverClass(driver);
@@ -62,5 +64,29 @@ public class DataSourceConfig {
         transactionManager.setDataSource(dataSource);
         return transactionManager;
     }
+
+    /**
+     * 配置 JDBC 驱动的数据源
+     * DriverManagerDataSource
+     */
+   /* @Bean
+    public DataSource dataSource(){
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setDriverClassName("");
+        ds.setUrl("");
+        ds.setUsername("");
+        ds.setPassword("");
+        return  ds;
+    }*/
+
+    /**
+     * 配置 JdbcTemplate
+     * @param dataSource
+     * @return
+     */
+   @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource){
+       return  new JdbcTemplate(dataSource);
+   }
 
 }
