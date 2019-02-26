@@ -1,21 +1,19 @@
 package cc.learn.config;
 
-import java.beans.PropertyVetoException;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
 
 /**
  * @Description:
@@ -81,12 +79,29 @@ public class DataSourceConfig {
 
     /**
      * 配置 JdbcTemplate
+     *
      * @param dataSource
      * @return
      */
-   @Bean
-    public JdbcTemplate jdbcTemplate(DataSource dataSource){
-       return  new JdbcTemplate(dataSource);
-   }
+    @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    /**
+     * @author Cedar
+     * @DESCRIPTION: 配置redis连接工厂
+     * @params: []
+     * @return: org.springframework.data.redis.connection.RedisConnectionFactory
+     * @Date: 2019/2/26 17:02
+     */
+    @Bean
+    public RedisConnectionFactory redisCF() {
+        JedisConnectionFactory cf = new JedisConnectionFactory();
+        cf.setHostName("127.0.0.1");
+        cf.setPort(6379);
+        cf.setPassword("password");
+        return cf;
+    }
 
 }

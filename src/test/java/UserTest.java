@@ -26,7 +26,7 @@ import sun.security.util.Length;
  * @author: C
  * @date: 2019年1月14日 上午11:44:39
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {RootConfig.class, WebConfig.class})
 @ActiveProfiles("prod")
 public class UserTest {
@@ -36,13 +36,13 @@ public class UserTest {
     @Autowired
     private Environment env;
 
-    @Test
+   // @Test
     public void envTest() {
         String url = env.getProperty("jdbc.url");
         System.out.println(url);
     }
 
-    @Test
+    //@Test
     public void profileTest() {
         System.out.println(Arrays.toString(env.getActiveProfiles()));
     }

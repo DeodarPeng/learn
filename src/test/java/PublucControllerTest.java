@@ -14,14 +14,14 @@ import cc.learn.controller.PublicController;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 public class PublucControllerTest {
-    @Test
+
     public void testIndexPage() throws Exception {
         PublicController publicController = new PublicController();
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(publicController).build();
         mockMvc.perform(get("/")).andExpect(view().name("index"));
     }
 
-    @Test
+
     public void listAllUserTest() throws Exception {
         UserService userService = new UserServiceImpl();
         UserService mockService = mock(UserService.class);
