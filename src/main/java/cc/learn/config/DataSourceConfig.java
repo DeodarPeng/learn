@@ -6,8 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -90,18 +88,28 @@ public class DataSourceConfig {
 
     /**
      * @author Cedar
-     * @DESCRIPTION: 配置redis连接工厂
+     * @DESCRIPTION: 配置redis连接工厂  --> CachingConfig
      * @params: []
      * @return: org.springframework.data.redis.connection.RedisConnectionFactory
      * @Date: 2019/2/26 17:02
      */
-    @Bean
+  /*  @Bean
     public RedisConnectionFactory redisCF() {
         JedisConnectionFactory cf = new JedisConnectionFactory();
         cf.setHostName("127.0.0.1");
         cf.setPort(6379);
         cf.setPassword("password");
         return cf;
-    }
+    }*/
+
+   /*  --> CachingConfig
+    @Bean
+    public RedisTemplate<String, User> redisTemplate(RedisConnectionFactory cf) {
+        RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(cf);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        return redisTemplate;
+    }*/
 
 }

@@ -4,11 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.IOException;
@@ -19,9 +16,9 @@ import java.io.IOException;
  * @date: 2018年11月14日 上午9:28:55
  */
 @Configuration
-@ComponentScan(basePackages = { "cc.learn" }, excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
-@Import({ DataSourceConfig.class, MybatisConfig.class, ThreadConfig.class })
+@ComponentScan(basePackages = {"cc.learn"}, excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)})
+//@Import({ DataSourceConfig.class, MybatisConfig.class, ThreadConfig.class })
 //@ImportResource("classpath:spring/spring.xml")
 public class RootConfig {
 
@@ -41,8 +38,7 @@ public class RootConfig {
         commonsMultipartResolver.setUploadTempDir(new FileSystemResource("/temp/uploads"));
         return commonsMultipartResolver;*/
 
-    return  null;
+        return null;
     }
-
 
 }

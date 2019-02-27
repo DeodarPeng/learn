@@ -89,7 +89,7 @@ public class JdbcUserRepository implements UserReposity {
         jdbcInsert.setGeneratedKeyName("id");
         Map<String, Object> args = new HashMap<String, Object>();
         args.put("user_name", user.getUserName());
-        args.put("updte_date", new Date());
+        args.put("update_date", new Date());
         long userId = jdbcInsert.executeAndReturnKey(args).longValue();
         return userId;
     }
