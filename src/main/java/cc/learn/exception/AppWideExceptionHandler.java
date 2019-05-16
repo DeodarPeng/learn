@@ -12,4 +12,5 @@ public class AppWideExceptionHandler {
     public String hasException(){
         return  "has exception";
     }
+
 }

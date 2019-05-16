@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -37,8 +38,13 @@ public class RootConfig {
         //默认临时文件路径为 Servlet 容器的临时目录
         commonsMultipartResolver.setUploadTempDir(new FileSystemResource("/temp/uploads"));
         return commonsMultipartResolver;*/
-
         return null;
+    }
+
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
     }
 
 }
