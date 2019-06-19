@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -32,7 +34,7 @@ public class DataSourceConfig {
     @Value("${jdbc.url}")
     private String url;
 
-    @Bean
+    /*@Bean
     @Profile("dev")
     public DataSource devDataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -41,10 +43,10 @@ public class DataSourceConfig {
         dataSource.setUser("user");
         dataSource.setPassword("pwd");
         return dataSource;
-    }
+    }*/
 
     @Bean
-    @Profile("prod")
+   // @Profile("prod")
     public DataSource prodDataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setDriverClass(driver);
@@ -93,14 +95,14 @@ public class DataSourceConfig {
      * @return: org.springframework.data.redis.connection.RedisConnectionFactory
      * @Date: 2019/2/26 17:02
      */
-  /*  @Bean
+   @Bean
     public RedisConnectionFactory redisCF() {
         JedisConnectionFactory cf = new JedisConnectionFactory();
         cf.setHostName("127.0.0.1");
         cf.setPort(6379);
         cf.setPassword("password");
         return cf;
-    }*/
+    }
 
    /*  --> CachingConfig
     @Bean

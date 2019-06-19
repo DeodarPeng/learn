@@ -59,12 +59,12 @@ public class CachingConfig {
      * @return: org.springframework.data.redis.connection.jedis.JedisConnectionFactory
      * @Date: 2019/2/27 16:37
     */
-    @Bean
+   /* @Bean
     public JedisConnectionFactory redisConnectionFactory() {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         jedisConnectionFactory.afterPropertiesSet();
         return jedisConnectionFactory;
-    }
+    }*/
 
     /**
      * @author Cedar

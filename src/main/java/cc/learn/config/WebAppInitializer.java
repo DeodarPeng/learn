@@ -33,7 +33,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
      */
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/" };
+        return new String[] { "/","*.service" };
     }
 
     /**
@@ -44,4 +44,5 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(new MultipartConfigElement("/tmp/spittr/uploads"));
     }
+
 }

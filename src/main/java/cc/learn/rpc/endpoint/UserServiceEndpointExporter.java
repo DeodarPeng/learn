@@ -9,6 +9,7 @@ import cc.learn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 @Component
 @WebService(serviceName = "UserService")
 public class UserServiceEndpointExporter {
-    @Autowired
+    @Resource(name = "userServiceImpl")
     UserService userService;  //自动装配UserService
 
     @WebMethod

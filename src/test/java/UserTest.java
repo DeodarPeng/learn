@@ -3,6 +3,7 @@ import java.util.Arrays;
 import cc.learn.config.WebConfig;
 import cc.learn.controller.PublicController;
 import cc.learn.controller.UserController;
+import cc.learn.jms.AlertService;
 import cc.learn.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cc.learn.config.RootConfig;
 import cc.learn.service.UserService;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -26,15 +28,18 @@ import sun.security.util.Length;
  * @author: C
  * @date: 2019年1月14日 上午11:44:39
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {RootConfig.class, WebConfig.class})
 @ActiveProfiles("prod")
+@WebAppConfiguration
 public class UserTest {
 
     @Autowired
     private UserService userService;
     @Autowired
     private Environment env;
+    @Autowired
+    private AlertService alertService;
 
    // @Test
     public void envTest() {
@@ -47,5 +52,9 @@ public class UserTest {
         System.out.println(Arrays.toString(env.getActiveProfiles()));
     }
 
+    @Test
+    public void  testJms(){
+        alertService.sendMessageAlert("abc");
+    }
 
 }

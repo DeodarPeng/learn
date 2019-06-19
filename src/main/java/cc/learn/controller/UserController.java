@@ -10,6 +10,7 @@ import cc.learn.po.User;
 import cc.learn.service.UserService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
+    @Resource(name = "userServiceImpl")
     private UserService userService;
 
     @RequestMapping( value = "/saveUser", method = RequestMethod.POST)
